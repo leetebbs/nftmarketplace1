@@ -10,8 +10,8 @@ async function main() {
   const publicPrice = ethers.parseEther("0"); 
   const initialtokenSupply = ethers.parseEther("0"); 
   const signer = deployer.address 
-
-  const argumentsArray = [name, symbol, maxSupply.toString(), publicPrice.toString(), initialtokenSupply.toString(), signer]
+  const uri ="" //add your token uri here
+  const argumentsArray = [name, symbol, uri, maxSupply.toString(), publicPrice.toString(), initialtokenSupply.toString(), signer]
   const content = "module.exports = " + JSON.stringify(argumentsArray, null, 2) + ";";
   fs.writeFileSync("./arguments.js", content);
 
@@ -23,6 +23,7 @@ async function main() {
   const token = await Token.deploy(
     name,
     symbol,
+    uri,
     maxSupply,
     publicPrice,
     initialtokenSupply,
